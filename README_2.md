@@ -7,7 +7,7 @@ PipeOne-NM is applicable to species with reference genome and can provide compre
 # Index
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-  - [1.Download PipeOne_NM](#__1.-download-pipeOne-NM__)
+  - [1.Download PipeOne_NM](#__1.-download-pipeone-nm__)
   - [2.Setup](#__2.-setup__)
   - [3.Configuration](#__3.-configuration__)
 - [Run the Pipeline](#__run-the-pipeline__)
