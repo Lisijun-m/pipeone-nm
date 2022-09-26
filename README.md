@@ -14,7 +14,7 @@ PipeOne-NM is applicable to species with reference genome and can provide compre
   - [1.Download PipeOne-NM](#1-download-pipeone-nm)
   - [2.Setup](#2-setup)
   - [3.Configuration](#3-configuration)
-- [Run the Pipeline](#__run-the-pipeline__)
+- [Run the Pipeline](#run-the-pipeline)
 - [Results](#results) 
 - [Rstudio scripts](#rstudio-scripts) 
 - [Contact](#contact) 
