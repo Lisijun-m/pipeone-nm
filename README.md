@@ -4,12 +4,16 @@
 
 PipeOne-NM is applicable to species with reference genome and can provide comprehensive insights into transcriptome of non-model organisms. It integrates twenty-one different tools to extract information from RNA-seq data and utilizes five R packages to carry out downstream analysis and data visualization. 
 
+<p align="center">
+<img src="https://github.com/Lisijun-m/pipeone-nm/blob/main/Figures/workflow.png" width="600px">
+</p>
+
 # Index
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-  - [1.Download PipeOne_NM](#__1.-download-pipeone-nm__)
-  - [2.Setup](#__2.-setup__)
-  - [3.Configuration](#__3.-configuration__)
+  - [1.Download PipeOne_NM](#__1-download-pipeone-nm__)
+  - [2.Setup](#__2-setup__)
+  - [3.Configuration](#__3-configuration__)
 - [Run the Pipeline](#__run-the-pipeline__)
 - [Results](#results) 
 - [Rstudio scripts](#rstudio-scripts) 
