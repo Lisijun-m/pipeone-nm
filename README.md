@@ -81,19 +81,21 @@ params {
   }
 }
 ```
-* *refgenome* is the file path of reference genome (fasta format)
-* *ref_miRNA* is the miRNA reference for non-model species. Reference from genetic similar model organisms can be used as alternative.
-* *uniprot* is a input database
-* *pfam* is a input database
-* *sqlite* is input sqlite file
+* Replace *fish_test* with the name of your project
+* *refgenome* is the file path of reference genome (fasta format), replace it with your path of reference genome
+* *ref_miRNA* is the miRNA reference for non-model species. Reference from genetic similar model organisms can be used as alternative. Replace it with your path of miRNA reference. In the test data of grass carp, the miRNA reference was downloaded from [fishmirna](http://fishmirna.org/data/download/FishmiRNA-June2021-dre-mature.fasta)
+* *uniprot* is a input database, downloading of *uniprot* can be found in [Trinotate](https://github.com/Trinotate/Trinotate/wiki/Software-installation-and-data-required)
+* *pfam* is a input database, downloading of *pfam* can be found in [Trinotate](https://github.com/Trinotate/Trinotate/wiki/Software-installation-and-data-required)
+* *sqlite* is input sqlite file, downloading of *sqlite* can be found in [Trinotate](https://github.com/Trinotate/Trinotate/wiki/Software-installation-and-data-required)
+* *sample* is the sample information (including biological conditions and repetitions) of your project in txt format, for example:
 
-reqiured files which need for Trinotate, you could find this in [Trinotate](https://github.com/Trinotate/Trinotate/wiki/Software-installation-and-data-required) installation instruction 
-
-* refgenome
-* ref_miRNA
-* uniprot
-* pfam
-* sqlite
+```
+Condition_A    sample1    sample1_left.fq    sample1_right.fq
+Condition_A    sample2    sample2_left.fq    sample2_right.fq
+Condition_B    sample3    sample3_left.fq    sample3_right.fq
+Condition_B    sample4    sample4_left.fq    sample4_right.fq
+```
+*Condition_A* and *Condition_B* stand for biological conditions (treatments), *sample1* stands for sample name and *sample1_left.fq* stands for sequencing file in fastq format.
 
 ## __Run the Pipeline__
 
@@ -107,14 +109,6 @@ nextflow run /path/to/pipeOne-nm  -profile docker --sra './sra/*.sra' --genome f
     * --sra, RNA-seq data in sra format downloaded from GEO, store in directory *sra*, e.g. *SRR16151823.sra*
     * or --fastq, RNA-seq data in fastq format
   * --genome, genome defined in `conf/genomes.config`
-  * sample information
-    * the biological condition and corresponding fq format file
-```
-Condition_A    sample1    sample1_left.fq    sample1_right.fq
-Condition_A    sample2    sample2_left.fq    sample2_right.fq
-Condition_B    sample3    sample3_left.fq    sample3_right.fq
-Condition_B    sample4    sample4_left.fq    sample4_right.fq
-```
 
 
 ## Results
@@ -278,10 +272,12 @@ Use grass carp RNA-seq data GSE185170 as analysis example.
   * *SE.MATS.JCEC.txt*
   * *SE.MATS.JC.txt*
 
-## Rstudio scripts
+## Supplementary scripts
 Compared with above process, differential expression analysis needs to be tailored to different datasets. It may involve removing of batch effect, differential analysis between multiple biological conditions and retrieving differential expression genes according to individualized threshold. 
 
-Therefore, the differential analysis pipeline is not included in our PipeOne-NM, but here we present an example of performing differential analysis on grass carp circRNA host genes in folder Rstudio-example-scripts.
+Therefore, the differential analysis pipeline is not included in our PipeOne-NM, but here we present an example of performing differential analysis on grass carp circRNA host genes in folder Supplementary-example-scripts.
+
+For the analysis of co-experssion of lncRNA-mRNA pair, we provide the matlab scripts in folder Supplementary-example-scripts.
 
 ## Contact
 For any problem, write to lisj35@mail2.sysu.edu.cn
