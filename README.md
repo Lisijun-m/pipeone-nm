@@ -71,6 +71,7 @@ params {
   genomes {
   "fish_test" {
 	refgenome = "/path/to/genome/genomic.fna"
+	sample = "/path/to/genome/samples.txt"
 	ref_miRNA = '/path/to/genome/public5/l/FishmiRNA-June2021-dre-mature.fasta'			  // for miranda
 	uniprot = "/path/to/genome/uniprot_sprot.pep"                                                     // for Trinotate
 	pfam = "/path/to/genome/Pfam-A.hmm"                                                               // for Trinotate
