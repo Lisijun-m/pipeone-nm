@@ -64,6 +64,7 @@ The above four softwares are not included in the docker container and need to be
 
 ### __3. Configuration__
 
+#### basic configuration
 Modify the program configuration file `pipeone-nm/conf/genomes.config`,  change the line below and store preparation files for *PipeOne-NM*:
 
 ```
@@ -96,6 +97,21 @@ Condition_B    sample3    sample3_left.fq    sample3_right.fq
 Condition_B    sample4    sample4_left.fq    sample4_right.fq
 ```
 *Condition_A* and *Condition_B* stand for biological conditions (treatments), *sample1* stands for sample name and *sample1_left.fq* stands for sequencing file in fastq format.
+
+#### Configuraton for alternative splicing analysis
+For alternative splicing analysis, provide information file for two biological conditions in txt format and name the two file as *AS_con1.txt* and *AS_con2.txt*. 
+For example, *AS_con1.txt* is file that contains sample alignment file path for the first biological condition. Each bam file path is separated by comma.
+
+```
+/result/hisat2/SRR16151827.bam,/result/hisat2/SRR16151828.bam,/result/hisat2/SRR16151829.bam
+```
+
+Open the `pipeone-nm/main.nf` and replace line 25 with corresponding file path
+
+```
+as_files = tuple('/path/to/AS_con1.txt', '/path/to/AS_con2.txt')
+```
+
 
 ## __Run the Pipeline__
 
@@ -281,3 +297,5 @@ For the analysis of co-experssion of lncRNA-mRNA pair, we provide the matlab scr
 
 ## Contact
 For any problem, write to lisj35@mail2.sysu.edu.cn
+
+
