@@ -55,7 +55,7 @@ To ensure a successful installation, we recommend that you run each command step
 ##### __2.2 softwares need to be registeration__
 
 * Trinotate
-* tmhmm v2 (free academic download) [http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?tmhmm](http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?tmhmm)
+* tmhmm v2 (free academic download) [https://services.healthtech.dtu.dk/service.php?TMHMM-2.0](https://services.healthtech.dtu.dk/service.php?TMHMM-2.0)
 
 * RNAMMER (free academic download) [http://www.cbs.dtu.dk/cgi-bin/sw_request?rnammer](http://www.cbs.dtu.dk/cgi-bin/sw_request?rnammer)
 * signalP v4 (free academic download) [http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?signalp](http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?signalp)
