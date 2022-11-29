@@ -58,7 +58,7 @@ To ensure a successful installation, we recommend that you run each command step
 * tmhmm v2 (free academic download) [https://services.healthtech.dtu.dk/service.php?TMHMM-2.0](https://services.healthtech.dtu.dk/service.php?TMHMM-2.0)
 
 * RNAMMER (free academic download) [https://services.healthtech.dtu.dk/service.php?RNAmmer-1.2](https://services.healthtech.dtu.dk/service.php?RNAmmer-1.2)
-* signalP v4 (free academic download) [http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?signalp](http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?signalp)
+* signalP v4 (free academic download) [https://services.healthtech.dtu.dk/service.php?SignalP-5.0](https://services.healthtech.dtu.dk/service.php?SignalP-5.0)
 
 The above four softwares are not included in the docker container and need to be installed by users.
 
