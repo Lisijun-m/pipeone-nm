@@ -1,5 +1,6 @@
-#!/usr/bin/env Rscript
-## use grass carp RNA-seq as test data, grass carp GEO: GSE185170
+## GO analysis script for differential expressed genes
+## go_forStats.txt can be found in output directory 
+## All_diffsig.csv is created in differential analysis part
 
 library(”ggplot2”,”clusterProfiler”)
 
@@ -14,7 +15,7 @@ diff<-read.csv("All_diffsig.csv",header=T)
 geneName<-diff$X
 go_enrich <- enricher(gene=geneName,pvalueCutoff = 0.05,pAdjustMethod = "BH",TERM2GENE = go_term2gene,TERM2NAME = go_term2name)
 diff_go=as.data.frame(go_enrich)
-write.csv(diff_go,"3salineInjured_3saline.csv",row.names = F)
-pdf("3salineInjured_3saline_bar.pdf")
+
+pdf("results.pdf")
 barplot(go_enrich,showCategory=30,font.size=10)
 dev.off()
