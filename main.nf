@@ -13,6 +13,9 @@ params.sra = ''
 params.fastq = ''
 params.genome
 params.cleaned  = false
+params.singleEnd =  false
+params.read_length = 100
+params.rm_rRNA = true
 
 params.refgenome = params.genome ? params.genomes[ params.genome ].refgenome ?: false : false
 params.min_length = params.genome ? params.genomes[ params.genome ].min_length ?: false : false
@@ -44,6 +47,9 @@ include { Reformat } from "${baseDir}/modules/process/reformat.nf"
 include { Bedtools } from "${baseDir}/modules/process/bedtools.nf"
 include { Miranda } from "${baseDir}/modules/process/miranda.nf"
 include { Rmats } from "${baseDir}/modules/process/rmats.nf"
+include {Asgal} from "${baseDir}/modules/process/asgal.nf"
+include {Ribodetector} from "${baseDir}/modules/process/ribodetector.nf"
+
 // include { PrepDE } from "${baseDir}/modules/process/prepDE.nf"
 
 
@@ -69,8 +75,17 @@ workflow {
     
     
     Fastp(reads)
-    cleaned_reads = Fastp.out.cleaned_reads.map{it -> [it[0], [it[1], it[2]]] }
+    cleaned_reads_fp = Fastp.out.cleaned_reads.map{it -> [it[0], [it[1], it[2]]] }
     
+    if(params.rm_rRNA){
+
+        Ribodetector(cleaned_reads_fp)
+        cleaned_reads = Ribodetector.out
+    }else{
+        cleaned_reads =cleaned_reads_fp
+    }
+
+
     Hisat2_build(refgenome)
     hisat2_idx = Hisat2_build.out.ht2.collect()
 
@@ -165,7 +180,7 @@ workflow {
 		.combine(trimmed_reads, by: 0)
         .combine(ciri, by:0)
    
-    id_bam_reads_ciri.view()
+    // id_bam_reads_ciri.view()
 
     CIRIquant(id_bam_reads_ciri, refgenome, TACO, bwaindex, hisat2_idx)
     ciriquant = CIRIquant.out.ciriquant
@@ -178,5 +193,5 @@ workflow {
 
     // Rmats(TACO, as_files)
 
-    
+    Asgal(refgenome,TACO, exon, cleaned_reads)
 }   

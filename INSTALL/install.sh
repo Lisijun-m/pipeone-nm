@@ -25,3 +25,5 @@ conda activate pipeone_nm_4
 conda install -c bioconda trinotate=3.2.2
 conda install -c bioconda perl-dbi   #install dbi modules
 conda deactivate
+
+#cpan -i install  XML::Simple

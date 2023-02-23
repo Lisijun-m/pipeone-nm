@@ -37,7 +37,7 @@ process Hisat2 {
     
         """
         set +u; source activate pipeone_nm; set -u
-        hisat2 -p $task.cpus --dta $rnastrandness -x hisat2_index/$hisat2_base -1 ${id}_1.fastp.fq.gz -2 ${id}_2.fastp.fq.gz  \\
+        hisat2 -p $task.cpus --dta $rnastrandness -x hisat2_index/$hisat2_base -1 ${reads[0]} -2 ${reads[1]} \\
         --un-conc-gz ${id}_%.fq.gz --new-summary --summary-file ${id}.align.log \\
         | samtools sort -@ 2 -o ${id}.bam
         

@@ -178,9 +178,10 @@ process Rnammer {
         script:
 
         """
-        
+        set +e
         rnammer_path=\$(which rnammer)
         RnammerTranscriptome.pl --transcriptome Transcripts.fasta --path_to_rnammer \$rnammer_path > rnammer.log 2>&1
+        set -e
         if [ ! -f "Transcripts.fasta.rnammer.gff" ];then
                 touch Transcripts.fasta.rnammer.gff
         fi
@@ -190,7 +191,7 @@ process Rnammer {
 process Trinotate {
 
 	errorStrategy { task.exitStatus == 1 ? 'ignore' : 'terminate' }		
-        publishDir "${params.outdir}/trinotate/", mode: 'link',
+        publishDir "${params.outdir}/trinotate/", mode: 'copy',
             saveAs: {filename -> 
                 if (filename =~/log/) "logs/${filename}"
                 else "${filename}"}
@@ -210,12 +211,11 @@ process Trinotate {
         output:
         path("Trinotate.xls"), emit: trinotatefile
         tuple path("init.log"), path("load_blastp.log"), path("load_blastx.log"), path("load_pfam.log"), path("load_tmhmm.log"), path("load_signalp.log"), path("load_rnammer.log"), path("report.log")
-        
+        path("go_annotations.txt")
         
         script:
 
         """
-        
         set +u; source activate pipeone_nm_4
         
         Trinotate Trinotate_20210616.sqlite init --gene_trans_map Transcripts.fasta.gene_trans_map --transcript_fasta Transcripts.fasta --transdecoder_pep Transcripts.fasta.transdecoder.pep > init.log 2>&1
@@ -239,7 +239,7 @@ process Trinotate {
        
 
         Trinotate Trinotate_20210616.sqlite report --incl_pep --incl_trans > Trinotate.xls 2> report.log
-        
+        extract_GO_assignments_from_Trinotate_xls.pl --Trinotate_xls Trinotate.xls -G --include_ancestral_terms > go_annotations.txt
         source activate pipeone_nm
         """
 }
