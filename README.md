@@ -40,7 +40,7 @@ git clone https://github.com/Lisijun-m/pipeone-nm.git
 **Option 1: pull docker images run by docker**
 
 ```bash
-docker pull nongbaoting/pipeone_nm:latest
+docker pull sijunli/pipeone_nm:latest
 ```
 
 **Option 2: install conda environments** 
@@ -51,7 +51,7 @@ bash ./install.sh
 ```
 To ensure a successful installation, we recommend that you run each command step by step in the shell script install.sh
 
-After conda enviroments are settled, install Trinotate, trinityrnaseq and CIRI2 in pipeone directory.
+After conda enviroments are settled, install Trinotate, trinityrnaseq, miRanda and CIRI2 in pipeone directory.
 
 An example may be like this:
 
@@ -72,8 +72,20 @@ tar -xzvf Trinity-v2.13.2.tar.gz
 cd pipeone
 wget https://sourceforge.net/projects/ciri/files/CIRI-full/CIRI-full_v2.0.zip
 unzip CIRI-full_v2.0.zip
+
+## miRanda
+cd pipeone
+wget http://cbio.mskcc.org/microrna_data/miRanda-aug2010.tar.gz
+tar zxvf miRanda-aug2010.tar.gz
+mv miRanda-3.3a  miRanda
+./configure --prefix=$HOME/software/miRanda
+make
+make install
+echo 'export PATH=/path/to/pipeone/miRanda-3.3a/src:$PATH' >> ~/.bashrc
+source ~/.bashrc
+
 ```
-The docker images contains Trinotate, trinityseq and CIRI2, so the installation is needed only in option 2.
+The docker images contains Trinotate, trinityseq, miRanda and CIRI2, so the installation is needed only in option 2.
 
 ##### __2.2 softwares need to be registerated__
 
@@ -88,7 +100,7 @@ The above four softwares are not included in the docker container nor the conda 
 Run the docker container in interaction mode, and install tmhmm, RNAMMER and signalP in directory _/pipeone_. The following codes can be used as a guide.
 
 ```
-docker run -it nongbaoting/pipeone_nm
+docker run -it sijunli/pipeone_nm
 cd /pipeone
 tar -zxvf signalp-4.1g.Linux.tar.gz
 tar -zxvf rnammer-1.2.src.tar.gz
@@ -179,6 +191,7 @@ as_files = tuple('/path/to/AS_con1.txt', '/path/to/AS_con2.txt')
 ```
 Then run the pipeline with nextflow:
 ```
+docker pull nongbaoting/pipeone_nm:latest
 nextflow run /path/to/pipeOne-nm  -profile docker --sra './sra/*.sra' --genome test
 ```
 
@@ -191,9 +204,12 @@ nextflow run /path/to/pipeOne-nm  -profile docker --sra './sra/*.sra' --genome t
 **Option 2: run with python script (Docker image required)**
 
 ```
-docker run -it -v /Users/project:/work_dir nongbaoting/pipeone_nm /bin/bash 
-python basicPipeline.py -i /path/to/sra -o /path/to/output
+docker run -it -v /Users/project:/work_dir sijunli/pipeone_nm /bin/bash 
+python basicPipeline.py -i /work_dir/path/to/sra -o /work_dir/path/to/output
+exit
 ```
+* directory /Users/project is the directory contains all the raw data and will store the output, it will be projected in docker images as directory /work_dir
+* After the execution is done, exit the docker images and the analysis result will be stored in directory /Users/project/
 
 **Option 2: run with python script (Conda enviroments required)**
 
@@ -204,12 +220,11 @@ An example might be this:
 python /path/to/pipeone/basicPipeline.py -i /path/to/sra -o /path/to/output
 ```
 
-## Results
+## Parameters
+The parameters set in the pipeline can be viewed in *Parameters.md*. Other parameters are default parameters for each tool.
 
 
 ## Supplementary scripts
 Compared with above process, differential expression analysis needs to be tailored to different datasets. It may involve removing of batch effect, differential analysis between multiple biological conditions and retrieving differential expression genes according to individualized threshold. 
 
 Therefore, the differential analysis pipeline is not included in our PipeOne-NM, but here we present an example of performing differential analysis on grass carp circRNA host genes in folder Supplementary-example-scripts.
-
-For the analysis of co-experssion of lncRNA-mRNA pair, we provide the matlab scripts in folder Supplementary-example-scripts.
