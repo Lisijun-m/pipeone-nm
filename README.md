@@ -9,7 +9,7 @@ PipeOne-NM is applicable to species with reference genome and can provide compre
 </p>
 
 # Index
-- [Prerequisites & Configuration](#prerequisites-&-configuration)
+- [Prerequisites and Configuration](#prerequisites-and-configuration)
 - [Installation](#installation)
   - [1.Download PipeOne-NM](#1-download-pipeone-nm)
   - [2.Setup](#2-setup)
@@ -19,7 +19,7 @@ PipeOne-NM is applicable to species with reference genome and can provide compre
 - [Supplementary scripts](#supplementary-scripts)
 
 
-## Prerequisites & Configuration
+## Prerequisites and Configuration
 
 1. [Docker](https://www.docker.com/) or [conda](https://docs.conda.io/en/latest/miniconda.html)
 2. Java (version >= 1.7)
