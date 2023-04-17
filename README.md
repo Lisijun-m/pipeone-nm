@@ -26,7 +26,7 @@ PipeOne-NM is applicable to species with reference genome and can provide compre
 3. [Nextflow](https://www.nextflow.io/) (version >= 20.07.1.5413) (can be installed via conda)
 
 * Operation System: Linux
-* CPU: 33
+* CPU Core Number: 33
 * RAM: 55G
 
 ## Installation
