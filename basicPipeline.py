@@ -3,7 +3,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description="RNA-seq analysis pipeline for non-model organisms.")
 parser.add_argument("-i", "--raw", required = True, help = "input raw RNA-seq data directory (raw data in fastq or sra format) e.g. /public5/lisj/00_raw. Attention: Please name the raw data as *_1.fastq and *_2.fastq" )
-parser.add_argument("-f", "--reference", type=str, help = "reference genome fasta file e.g. /public5/lisj/Genome/fasta.fna",action="store_true")
+parser.add_argument("-f", "--reference", type=str, help = "reference genome fasta file e.g. /public5/lisj/Genome/fasta.fna")
 parser.add_argument("-o", "--output", required = True, help = "output directory e.g. /public5/lisj/ ")
 parser.add_argument("--samples", required = True, help = "Basic sample information of raw data in txt format")
 parser.add_argument("--pair_end", required = False, default = True, type = bool, help = "Whether raw data is pair-end sequencing data, default= True")
